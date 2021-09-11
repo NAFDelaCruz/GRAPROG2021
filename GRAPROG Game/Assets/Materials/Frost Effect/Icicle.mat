@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Icicle
+  m_Shader: {fileID: -6465566751694194690, guid: c3f27ab4ee6db5846934f86ac1df5b4c,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 35e4118e2630a754f9681b15e0b708d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_265B7F3B_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 5d4968dd641da7545b00ec84084f6158, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_335D25B8_Texture_1:
+        m_Texture: {fileID: 2800000, guid: d5e39931c5b2a4942b1dea742ad7cadf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_3E018C44_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 5d4968dd641da7545b00ec84084f6158, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_443CF812_Texture_1:
+        m_Texture: {fileID: 2800000, guid: d5e39931c5b2a4942b1dea742ad7cadf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_73A33C78_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 5d4968dd641da7545b00ec84084f6158, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_886CA1DC_Texture_1:
+        m_Texture: {fileID: 2800000, guid: d5e39931c5b2a4942b1dea742ad7cadf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Fade: 0
+    m_Colors: []
