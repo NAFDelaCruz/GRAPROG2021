@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 35e4118e2630a754f9681b15e0b708d8, type: 3}
+        m_Texture: {fileID: 2800000, guid: bfbe04c96f14f374cbb51bc03b3d5249, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_265B7F3B_Texture_1:
@@ -49,5 +49,5 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Fade: 0
+    - _Fade: 1
     m_Colors: []
