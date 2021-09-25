@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Frost
-  m_Shader: {fileID: -6465566751694194690, guid: 49221c0ea3184244290861e5c8c2deb8,
+  m_Name: FrostEffect
+  m_Shader: {fileID: -6465566751694194690, guid: c3f27ab4ee6db5846934f86ac1df5b4c,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -21,26 +21,30 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 73fb92786fa77cb47babbe91ca225283, type: 3}
+        m_Texture: {fileID: 2800000, guid: bfbe04c96f14f374cbb51bc03b3d5249, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_5C70DACA_Texture_1:
+    - _SampleTexture2D_265B7F3B_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 5d4968dd641da7545b00ec84084f6158, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_335D25B8_Texture_1:
         m_Texture: {fileID: 2800000, guid: d5e39931c5b2a4942b1dea742ad7cadf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_766C0FFB_Texture_1:
-        m_Texture: {fileID: 0}
+    - _SampleTexture2D_3E018C44_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 5d4968dd641da7545b00ec84084f6158, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_9C98C285_Texture_1:
+    - _SampleTexture2D_443CF812_Texture_1:
         m_Texture: {fileID: 2800000, guid: d5e39931c5b2a4942b1dea742ad7cadf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_B20FB7ED_Texture_1:
-        m_Texture: {fileID: 2800000, guid: d5e39931c5b2a4942b1dea742ad7cadf, type: 3}
+    - _SampleTexture2D_73A33C78_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 5d4968dd641da7545b00ec84084f6158, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_B95DEEBC_Texture_1:
+    - _SampleTexture2D_886CA1DC_Texture_1:
         m_Texture: {fileID: 2800000, guid: d5e39931c5b2a4942b1dea742ad7cadf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
