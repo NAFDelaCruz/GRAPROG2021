@@ -273,8 +273,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerSprite: {fileID: 5669183954021086916}
+  CapeSprite: {fileID: 5669183955217612744}
   PlayerAnimator: {fileID: 5669183954021086918}
+  CapeAnimator: {fileID: 5669183955217612747}
+  Lantern: {fileID: 5669183954663637539}
   PlayerSpeed: 2
+  LightRadius: 0
 --- !u!114 &1911303966246082860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,9 +294,12 @@ MonoBehaviour:
   FuelBar: {fileID: 0}
   FrostBar: {fileID: 0}
   FrostEffect: {fileID: 2100000, guid: 2ff00a5dfeb32b249b82d468ae2202d9, type: 2}
+  FrostWarning: {fileID: 0}
+  PlayerControllerScript: {fileID: 8939913152058483034}
   Health: 100
   OvertimeFrostDamage: 1
-  FrostDamageDelay: 0.25
+  FrostEffectsDelay: 0.5
+  HPDepleteRate: 20
 --- !u!1 &5669183954663637539
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,7 +449,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5669183955217612750}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.0625, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5669183954021086919}

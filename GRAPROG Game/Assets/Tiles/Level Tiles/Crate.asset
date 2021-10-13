@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Crate
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -5677639671788084513, guid: 2b5d71da3e00016488b12f8e09f47ece,
+  m_Sprite: {fileID: -8484790260244285836, guid: 7ff8e4a424108d247b9a1b7375748955,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
