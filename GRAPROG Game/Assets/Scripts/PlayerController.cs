@@ -6,9 +6,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 public class PlayerController : MonoBehaviour
 {
     public SpriteRenderer PlayerSprite;
-    public SpriteRenderer CapeSprite;
     public Animator PlayerAnimator;
-    public Animator CapeAnimator;
     public GameObject Lantern;
     public float PlayerSpeed;
 
@@ -36,18 +34,14 @@ public class PlayerController : MonoBehaviour
         {
             transform.Translate(Vector2.right * Time.deltaTime * PlayerSpeed * MovePlayer);
             PlayerSprite.flipX = false;
-            CapeSprite.flipX = false;
             PlayerAnimator.SetFloat("Moving", Mathf.Abs(MovePlayer));
-            CapeAnimator.SetFloat("Moving", Mathf.Abs(MovePlayer));
         }
 
         if (MovePlayer < 0)
         {
             transform.Translate(Vector2.left * Time.deltaTime * PlayerSpeed * -MovePlayer);
             PlayerSprite.flipX = true;
-            CapeSprite.flipX = true;
             PlayerAnimator.SetFloat("Moving", Mathf.Abs(MovePlayer));
-            CapeAnimator.SetFloat("Moving", Mathf.Abs(MovePlayer));
         }
     }
 }
