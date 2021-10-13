@@ -20,11 +20,11 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        float LanternPower = Input.GetAxis("Mouse ScrollWheel") * 5f;
+        float LanternPower = Input.GetAxis("Mouse ScrollWheel") * 2.5f;
 
         if (LanternPower != 0)
         {
-            LightRadius = Mathf.Clamp(LightRadius += LanternPower, 1.0f, 4.5f);
+            LightRadius = Mathf.Clamp(LightRadius += LanternPower, 0.5f, 2.25f);
             Lantern.GetComponent<Light2D>().pointLightOuterRadius = LightRadius;
         }
 

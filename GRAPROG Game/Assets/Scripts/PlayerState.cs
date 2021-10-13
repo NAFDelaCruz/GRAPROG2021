@@ -1,15 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class PlayerState : MonoBehaviour
 {
     [Header("Set Components")]
-    public Slider FuelBar;
-    public Slider FrostBar;
-    public Material FrostEffect;
-    public Image FrostWarning;
+    public UIController UIControllerScript;
     public PlayerController PlayerControllerScript;
 
     [Header("Game Values")]
@@ -20,96 +17,104 @@ public class PlayerState : MonoBehaviour
     public float FrostEffectsDelay;
     [Tooltip("This value is divided by the Lantern's Point Light Outer Radius which results into the delay of HP deplete.")]
     public float HPDepleteRate;
-    
-    private float _maxHealth;
-    private float _maxFrostDamage;
-    private float _currentFrostDamage;
+
+    //[HideInInspector]
+    public float _currentFrostDamage;
+    [HideInInspector]
+    public float _iceState;
     private float _frostDamageExecuteTime = 0;
     private float _hpDepleteTime = 0;
     private float _defrostExecuteTime = 0;
-    private float _transparency;
-    private float _iceState;
-    private bool _isTakingFrost = false;
 
     void Start()
     {
-        _maxFrostDamage = FrostBar.value;
-        _currentFrostDamage = _maxFrostDamage;
-        _maxHealth = Health;
-        FrostEffect.SetFloat("_Fade", 0);
+        _currentFrostDamage = UIControllerScript._maxFrostDamage;
+        UIControllerScript._maxHealth = Health;
     }    
 
     void Update()
     {
-        if (_currentFrostDamage < 0 && _isTakingFrost)
-        {
-            FrostWarning.color = new Color(1, 1, 1, _transparency);
-            float pingpong = Mathf.PingPong(Time.time, 0.5f);
-            _transparency = Mathf.Lerp(0f, 0.65f, pingpong);
-        }
-        
-        if (Input.GetKeyDown(KeyCode.H) && Health < _maxHealth)
+        if (Input.GetKeyDown(KeyCode.H))
         {
             Health = Mathf.Clamp(Health += 10, 0, 100);
-            FuelBar.value = _maxHealth - Health;
         }
-
-        if (Time.time >= _hpDepleteTime && Health > 0)
+        //Depletes Fuel/HP overtime with rate being controlled by Lantern Power
+        if (Time.time >= _hpDepleteTime && Health > 0 && PlayerControllerScript.LightRadius >= 0.5f)
         {
             Health = Mathf.Clamp(Health -= 1, 0, 100);
-            FuelBar.value = _maxHealth - Health;
             _hpDepleteTime = Time.time + (HPDepleteRate / PlayerControllerScript.LightRadius);
+            Debug.Log(_hpDepleteTime);
         }
 
-        //Frost Effect
-        if ((PlayerControllerScript.LightRadius <= 3.0f && PlayerControllerScript.LightRadius > 2.0f) && (_currentFrostDamage <= 100 && _currentFrostDamage > 75) && Time.time > _frostDamageExecuteTime)
+        //Add Frost damage if Lantern Power is low
+        if (Health > 0 && (PlayerControllerScript.LightRadius <= 1.75f && PlayerControllerScript.LightRadius > 1.25f) && (_currentFrostDamage <= 100 && _currentFrostDamage > 75) && Time.time > _frostDamageExecuteTime)
         {
             AddFrostEffecT();
-            _isTakingFrost = true;
+            UIControllerScript._isTakingFrostDamage = true;
         }
-        else if ((PlayerControllerScript.LightRadius <= 2.0f && PlayerControllerScript.LightRadius >= 1f) && (_currentFrostDamage <= 100 && _currentFrostDamage > 50) && Time.time > _frostDamageExecuteTime)
+        else if (_currentFrostDamage == 75)
         {
-            AddFrostEffecT();
-            _isTakingFrost = true;
+            UIControllerScript._isTakingFrostDamage = false;
         }
 
-        //Defrost Effect 
-        if (PlayerControllerScript.LightRadius > 3.0f && (_currentFrostDamage < 100 && _currentFrostDamage >= 50) && Time.time > _defrostExecuteTime)
+        if (Health > 0 && (PlayerControllerScript.LightRadius <= 1.25f && PlayerControllerScript.LightRadius >= 0.5f) && (_currentFrostDamage <= 100 && _currentFrostDamage > 50) && Time.time > _frostDamageExecuteTime)
         {
-            DefrostEffecT();
+            AddFrostEffecT();
+            UIControllerScript._isTakingFrostDamage = true;
         }
-        else if ((PlayerControllerScript.LightRadius <= 3.0f && PlayerControllerScript.LightRadius > 2f) && (_currentFrostDamage < 75 && _currentFrostDamage >= 50) && Time.time > _defrostExecuteTime)
+        else if (_currentFrostDamage == 50)
+        {
+            UIControllerScript._isTakingFrostDamage = false;
+        }
+
+        //Subract Frost damage if Lantern Power is sufficient 
+        if (Health > 0 && PlayerControllerScript.LightRadius > 1.75f && (_currentFrostDamage < 100 && _currentFrostDamage >= 50) && Time.time > _defrostExecuteTime)
         {
             DefrostEffecT();
+            UIControllerScript._isTakingFrostDamage = false;
+        }
+        else if (Health > 0 && (PlayerControllerScript.LightRadius <= 1.75f && PlayerControllerScript.LightRadius > 0.5f) && (_currentFrostDamage < 75 && _currentFrostDamage >= 50) && Time.time > _defrostExecuteTime)
+        {
+            DefrostEffecT();
+            UIControllerScript._isTakingFrostDamage = false;
         } 
 
+        //Add Frost damage if Fuel/HP = 0
         if (Health == 0 && Time.time > _frostDamageExecuteTime && _currentFrostDamage > 0)
         {
             AddFrostEffecT();
+            if (_currentFrostDamage >= 40)
+            {
+                UIControllerScript._isTakingFrostDamage = true;
+            } 
+            else
+            {
+                UIControllerScript._isTakingFrostDamage = false;
+            }
         }
 
-        if (_currentFrostDamage >= 0 && _currentFrostDamage <= 49)
+        //Initiate Icicle effect
+        if (Health == 0 && _currentFrostDamage <= 49)
         {
-            FrostWarning.color = new Color(1, 1, 1, 0);
-            FrostEffect.SetFloat("_Fade", _iceState = Mathf.Clamp(_iceState += 0.1f, 0, 1) * Time.deltaTime);
+            _iceState = Mathf.Clamp(_iceState + (0.04f * Time.deltaTime), 0, 1);
         }
-        else if (Health > 0 && _iceState > 0)
+        else if (Health > 0 && _currentFrostDamage > 0)
         {
-            FrostEffect.SetFloat("_Fade", _iceState = Mathf.Clamp(_iceState -= 0.1f, 0, 1) * Time.deltaTime);
+            _iceState = Mathf.Clamp(_iceState - (0.04f * Time.deltaTime), 0, 1);
         }
     }
 
+    //Function to add frost damage overtime
     void AddFrostEffecT()
     {
         _currentFrostDamage -= OvertimeFrostDamage;
-        FrostBar.value = _currentFrostDamage;
         _frostDamageExecuteTime = Time.time + FrostEffectsDelay;
     }
 
+    //Function to subtract frost damage overtime
     void DefrostEffecT()
     {
         _currentFrostDamage += OvertimeFrostDamage;
-        FrostBar.value = _currentFrostDamage;
         _defrostExecuteTime = Time.time + FrostEffectsDelay;
     }
 }

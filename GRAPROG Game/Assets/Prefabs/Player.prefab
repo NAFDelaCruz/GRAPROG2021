@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 14257659}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.046370856, y: 0.3372426, z: -5.058639}
-  m_LocalScale: {x: 0.42155325, y: 0.42155325, z: 0.42155325}
+  m_LocalPosition: {x: -0.046370856, y: 0.3372426, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5669183954021086919}
   m_RootOrder: 1
@@ -60,7 +60,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 2.75
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -189,8 +189,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 277078077
+  m_SortingLayer: 3
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 334ec5f533501c04380007eb97eea3cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -274,7 +274,7 @@ MonoBehaviour:
   PlayerSprite: {fileID: 5669183954021086916}
   PlayerAnimator: {fileID: 5669183954021086918}
   Lantern: {fileID: 5669183954663637539}
-  PlayerSpeed: 2
+  PlayerSpeed: 1
   LightRadius: 0
 --- !u!114 &1911303966246082860
 MonoBehaviour:
@@ -288,15 +288,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d3d98f4844987428e1ac768091f05b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FuelBar: {fileID: 0}
-  FrostBar: {fileID: 0}
-  FrostEffect: {fileID: 2100000, guid: 2ff00a5dfeb32b249b82d468ae2202d9, type: 2}
-  FrostWarning: {fileID: 0}
+  UIControllerScript: {fileID: 0}
   PlayerControllerScript: {fileID: 8939913152058483034}
   Health: 100
   OvertimeFrostDamage: 1
   FrostEffectsDelay: 0.5
-  HPDepleteRate: 20
+  HPDepleteRate: 4.5
+  _currentFrostDamage: 0
+  _iceState: 0
 --- !u!1 &5669183954663637539
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,7 +322,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5669183954663637539}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.047, y: 0.003, z: 0}
+  m_LocalPosition: {x: 0, y: 0.003, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 5669183954021086919}
@@ -343,11 +342,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.35
+  m_FalloffIntensity: 0.5
   m_Color: {r: 0.8207547, g: 0.6574354, b: 0.49167854, a: 1}
-  m_Intensity: 2
+  m_Intensity: 1
   m_LightVolumeOpacity: 0.1
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 3de0831055d1829419be4b4d
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -357,7 +356,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 4.5
+  m_PointLightOuterRadius: 2.25
   m_PointLightDistance: 3
   m_PointLightQuality: 1
   m_ShapeLightParametricSides: 5
@@ -406,8 +405,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 277078077
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
