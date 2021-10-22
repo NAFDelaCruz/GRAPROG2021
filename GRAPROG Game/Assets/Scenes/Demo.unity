@@ -2858,6 +2858,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Global Light FG MG
       objectReference: {fileID: 0}
+    - target: {fileID: 6367571311254856505, guid: d4abaa1228963424c97fb6264106a236,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6367571311254856506, guid: d4abaa1228963424c97fb6264106a236,
         type: 3}
       propertyPath: m_Intensity
@@ -3428,6 +3433,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Global Light BG
+      objectReference: {fileID: 0}
+    - target: {fileID: 6367571311254856505, guid: d4abaa1228963424c97fb6264106a236,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6367571311254856506, guid: d4abaa1228963424c97fb6264106a236,
         type: 3}
