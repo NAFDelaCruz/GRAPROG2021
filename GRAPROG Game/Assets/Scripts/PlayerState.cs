@@ -43,7 +43,6 @@ public class PlayerState : MonoBehaviour
         {
             Health = Mathf.Clamp(Health -= 1, 0, 100);
             _hpDepleteTime = Time.time + (HPDepleteRate / PlayerControllerScript.LightRadius);
-            Debug.Log(_hpDepleteTime);
         }
 
         //Add Frost damage if Lantern Power is low
@@ -73,7 +72,7 @@ public class PlayerState : MonoBehaviour
             DefrostEffecT();
             UIControllerScript._isTakingFrostDamage = false;
         }
-        else if (Health > 0 && (PlayerControllerScript.LightRadius <= 1.75f && PlayerControllerScript.LightRadius > 0.5f) && (_currentFrostDamage < 75 && _currentFrostDamage >= 50) && Time.time > _defrostExecuteTime)
+        else if (Health > 0 && (PlayerControllerScript.LightRadius <= 1.75f && PlayerControllerScript.LightRadius > 1.25f) && (_currentFrostDamage < 75 && _currentFrostDamage >= 50) && Time.time > _defrostExecuteTime)
         {
             DefrostEffecT();
             UIControllerScript._isTakingFrostDamage = false;
@@ -107,14 +106,14 @@ public class PlayerState : MonoBehaviour
     //Function to add frost damage overtime
     void AddFrostEffecT()
     {
-        _currentFrostDamage -= OvertimeFrostDamage;
+        _currentFrostDamage += -OvertimeFrostDamage;
         _frostDamageExecuteTime = Time.time + FrostEffectsDelay;
     }
 
     //Function to subtract frost damage overtime
     void DefrostEffecT()
     {
-        _currentFrostDamage += OvertimeFrostDamage;
+        _currentFrostDamage -= -OvertimeFrostDamage;
         _defrostExecuteTime = Time.time + FrostEffectsDelay;
     }
 }
