@@ -9,9 +9,12 @@ public class PlayerController : MonoBehaviour
     public Animator PlayerAnimator;
     public GameObject Lantern;
     public float PlayerSpeed;
+    
 
     [HideInInspector]
     public float LightRadius;
+    [HideInInspector]
+    public float MovePlayer;
 
     void Start()
     {
@@ -28,7 +31,7 @@ public class PlayerController : MonoBehaviour
             Lantern.GetComponent<Light2D>().pointLightOuterRadius = LightRadius;
         }
 
-        float MovePlayer = Input.GetAxis("Horizontal");
+        MovePlayer = Input.GetAxis("Horizontal");
 
         if (MovePlayer > 0)
         {
