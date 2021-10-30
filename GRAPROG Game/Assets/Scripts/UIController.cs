@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour
     public Slider FuelBar;
     public Slider FrostBar;
     public Material FrostEffect;
+    public Material LanternPower;
     public Image FrostWarning;
     public PlayerController PlayerControllerScript;
     public PlayerState PlayerStateScript;
@@ -42,6 +43,7 @@ public class UIController : MonoBehaviour
         FrostBar.value = PlayerStateScript._currentFrostDamage;
 
         FrostEffect.SetFloat("_Fade", PlayerStateScript._iceState);
+        LanternPower.SetFloat("_Fill",PlayerControllerScript.LanternPowerFade);
     }
     
     IEnumerator DoFrostWarning()
