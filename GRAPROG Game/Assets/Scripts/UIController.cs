@@ -28,6 +28,7 @@ public class UIController : MonoBehaviour
     {
         _maxHealth = FuelBar.maxValue;
         _maxFrostDamage = FrostBar.value;
+        Debug.Log(FrostBar.value);
         FrostEffect.SetFloat("_Fade", 0);
     }
     

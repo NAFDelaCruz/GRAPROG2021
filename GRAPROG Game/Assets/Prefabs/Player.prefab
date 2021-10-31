@@ -6174,7 +6174,7 @@ MonoBehaviour:
   OvertimeFrostDamage: 1
   FrostEffectsDelay: 0.5
   HPDepleteRate: 4.5
-  _currentFrostDamage: 0
+  _currentFrostDamage: 100
   _iceState: 0
 --- !u!61 &885879911
 BoxCollider2D:
