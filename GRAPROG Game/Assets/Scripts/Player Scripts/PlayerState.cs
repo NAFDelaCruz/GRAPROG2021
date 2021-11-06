@@ -29,8 +29,6 @@ public class PlayerState : MonoBehaviour
     void Start()
     {
         _currentFrostDamage = 100;
-        Debug.Log(_currentFrostDamage);
-        Debug.Log(UIControllerScript._maxFrostDamage);
         UIControllerScript._maxHealth = Health;
     }    
 

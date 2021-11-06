@@ -53,6 +53,12 @@ TagManager:
   - name: Buildings
     uniqueID: 2491601237
     locked: 0
+  - name: Borders
+    uniqueID: 1585170707
+    locked: 0
+  - name: Toggle
+    uniqueID: 53002165
+    locked: 0
   - name: Play Area
     uniqueID: 277078077
     locked: 0
@@ -61,7 +67,4 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 3974789667
-    locked: 0
-  - name: Toggle
-    uniqueID: 53002165
     locked: 0

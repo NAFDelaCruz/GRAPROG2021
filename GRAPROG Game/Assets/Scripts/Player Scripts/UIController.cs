@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class UIController : MonoBehaviour
     public Material FrostEffect;
     public Material LanternPower;
     public Image FrostWarning;
+    public Image DeathBG;
+    public Image DeathText;
+    public GameObject DeathScreenButtons;
     public PlayerController PlayerControllerScript;
     public PlayerState PlayerStateScript;
     
@@ -22,13 +26,15 @@ public class UIController : MonoBehaviour
     [HideInInspector]
     public bool _isTakingFrostDamage = false;
 
-    private float _transparency;
+    private float _frostTransparency;
+    private float _deathBGTransparency = 0;
+    private float _deathTextTransparency = 0;
+    private float _fadeTime = 0;
 
     void Start()
     {
         _maxHealth = FuelBar.maxValue;
         _maxFrostDamage = FrostBar.value;
-        Debug.Log(FrostBar.value);
         FrostEffect.SetFloat("_Fade", 0);
     }
     
@@ -45,15 +51,27 @@ public class UIController : MonoBehaviour
 
         FrostEffect.SetFloat("_Fade", PlayerStateScript._iceState);
         LanternPower.SetFloat("_Fill",PlayerControllerScript.LanternPowerFade);
+
+        if (Time.time > _fadeTime && PlayerStateScript._currentFrostDamage == 0 && _deathTextTransparency < 1f)
+        {
+           DeathBG.color = new Color(0, 0, 0, _deathBGTransparency = Mathf.Clamp(_deathBGTransparency += 0.01f, 0, 0.6f));
+           DeathText.color = new Color(1, 1, 1, _deathTextTransparency = Mathf.Clamp(_deathTextTransparency += 0.01f, 0, 1f));
+           _fadeTime = Time.time + 0.1f;
+        }
+
+        if (_deathTextTransparency >= 1)
+        {
+            DeathScreenButtons.SetActive(true);
+        }
     }
     
     IEnumerator DoFrostWarning()
     {
         while (_isTakingFrostDamage)
         {
-            FrostWarning.color = new Color(1, 1, 1, _transparency);
+            FrostWarning.color = new Color(1, 1, 1, _frostTransparency);
             float pingpong = Mathf.PingPong(Time.time, 0.5f);
-            _transparency = Mathf.Lerp(0f, 0.65f, pingpong);
+            _frostTransparency = Mathf.Lerp(0f, 0.65f, pingpong);
             yield return 0;
         }
     }
@@ -73,9 +91,18 @@ public class UIController : MonoBehaviour
         while (PlayerStateScript.Health > 0 && PlayerControllerScript.LightRadius < 0.5f)
         {
             PlayerControllerScript.LightRadius = Mathf.Clamp(PlayerControllerScript.LightRadius + 0.00001f, 0f, 0.5f);
-            PlayerControllerScript.Lantern.GetComponent<Light2D>().pointLightOuterRadius = PlayerControllerScript.LightRadius;
+            PlayerControllerScript.LightRadius = Mathf.Clamp(PlayerControllerScript.LightRadius + 0.00001f, 0f, 0.5f);
             yield return 0;
         }
-        
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene("Demo");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
