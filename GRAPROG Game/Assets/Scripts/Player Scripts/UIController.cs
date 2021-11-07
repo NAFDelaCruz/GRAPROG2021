@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UIController : MonoBehaviour
 {
@@ -18,7 +19,8 @@ public class UIController : MonoBehaviour
     public GameObject DeathScreenButtons;
     public PlayerController PlayerControllerScript;
     public PlayerState PlayerStateScript;
-    
+    public TextMeshProUGUI PlayerLayerGUI;
+
     [HideInInspector]
     public float _maxFrostDamage;
     [HideInInspector]
@@ -63,6 +65,8 @@ public class UIController : MonoBehaviour
         {
             DeathScreenButtons.SetActive(true);
         }
+        
+        PlayerLayerGUI.text = PlayerControllerScript._layerOrder.ToString();
     }
     
     IEnumerator DoFrostWarning()

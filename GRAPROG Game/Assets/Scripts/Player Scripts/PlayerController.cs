@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
-using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,7 +11,6 @@ public class PlayerController : MonoBehaviour
     public Animator PlayerAnimator;
     public GameObject Lantern;
     public float PlayerSpeed;
-    public TextMeshProUGUI PlayerLayerGUI;
     
 
     [HideInInspector]
@@ -75,8 +73,6 @@ public class PlayerController : MonoBehaviour
                 _layerOrder = Mathf.Clamp(_layerOrder -= 1, 1, 3);
                 PlayerSprite.sortingOrder = _layerOrder;
             }
-            
-            PlayerLayerGUI.text = _layerOrder.ToString();
         }
 
         if (PlayerStateScript._currentFrostDamage == 0)

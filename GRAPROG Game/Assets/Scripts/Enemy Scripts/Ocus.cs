@@ -4,24 +4,43 @@ using UnityEngine;
 
 public class Ocus : Enemy
 {
-    public bool IsPlayerHiding;
-
-    private bool _isNotAttacking;
-
+    private bool _playerIsTargeted = false;
+     
     void Update()
     {
-        DistanceFromPlayer = gameObject.transform.position.x - Player.transform.position.x;
+        DistanceFromPlayer = Mathf.Abs(gameObject.transform.position.x - Player.transform.position.x);
+        EnemyAnimator.SetFloat("Distance", DistanceFromPlayer);
 
-    }
-
-    //add attack animation wait for seconds then check if it's still not null then apply damage. make attacking false so move on update will not activate
-    void OnTriggerEnter(Collider other)
-    {
-        EnemyAnimator.SetInteger("State", 2);
-
-        if (other != null)
+        DetectRadius = PlayerControllerScript.LightRadius + 1.5f;
+        if (!_isPlayerHiding && DistanceFromPlayer < DetectRadius && _isNotAttacking && _hasTransformed)
         {
-
+            ApproachPlayer();
+            _playerIsTargeted = true;
+        }
+        else if (_isPlayerHiding && DistanceFromPlayer < DetectRadius && PlayerControllerScript.LightRadius != 0.5f)
+        {
+            ApproachPlayer();
+            _playerIsTargeted = true;
+        }
+        else if (_hasTransformed && _isNotAttacking)
+        {
+            Patrol();
+            _playerIsTargeted = false;
         }
     }
-}
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") && _playerIsTargeted)
+        {
+            EnemyCollider = collision;
+            IsStillAttacking();
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") && _playerIsTargeted)
+            EnemyCollider = null;
+    }
+}   
