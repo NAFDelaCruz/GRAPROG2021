@@ -15,9 +15,10 @@ public class Ocus : Enemy
     }
 
     //add attack animation wait for seconds then check if it's still not null then apply damage. make attacking false so move on update will not activate
-    //yield return new WaitForSeconds(1.5f);
     void OnTriggerEnter(Collider other)
     {
+        EnemyAnimator.SetInteger("State", 2);
+
         if (other != null)
         {
 

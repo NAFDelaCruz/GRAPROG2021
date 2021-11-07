@@ -24,4 +24,9 @@ public class IndoorToggleScript : MonoBehaviour
         if (collision.gameObject.tag == "Player") 
             _isAtEntrance = true;
     }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        _isAtEntrance = false;
+    }
 }

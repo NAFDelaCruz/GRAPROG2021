@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public PlayerController PlayerControllerScript;
     public PlayerState PlayerStateScript;
     public Transform Player, Waypoint1, Waypoint2, ThisEnemy;
+    public Animator EnemyAnimator;
 
     [Header("Enemy Stats")]
     public float MovementSpeed;
@@ -49,5 +50,10 @@ public class Enemy : MonoBehaviour
     public void GetDetectRadius()
     {
         DetectRadius = PlayerControllerScript.LightRadius * 2;
+    }
+
+    public void DoDamage()
+    {
+
     }
  }
