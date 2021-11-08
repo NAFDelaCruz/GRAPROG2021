@@ -45,13 +45,13 @@ public class Enemy : MonoBehaviour
     {
         if (ThisEnemy.transform.position.x > Player.transform.position.x)
         {
-            ThisEnemy.GetComponent<SpriteRenderer>().flipX = false;
+            ThisEnemy.GetComponent<SpriteRenderer>().flipX = !ThisEnemy.GetComponent<SpriteRenderer>().flipX;
             Direction = -1;
         }
 
         if (ThisEnemy.transform.position.x < Player.transform.position.x)
         {
-            ThisEnemy.GetComponent<SpriteRenderer>().flipX = true;
+            ThisEnemy.GetComponent<SpriteRenderer>().flipX = !ThisEnemy.GetComponent<SpriteRenderer>().flipX;
             Direction = 1;
         }
     }
@@ -85,8 +85,6 @@ public class Enemy : MonoBehaviour
         {
             StartCoroutine(Idle());
         }
-
-        ThisEnemy.GetComponent<SpriteRenderer>().flipX = _flipToggle;
     }
 
     public IEnumerator Idle()
@@ -97,10 +95,12 @@ public class Enemy : MonoBehaviour
         _isNotIdle = true;
         if (ThisEnemy.transform.position.x < Waypoint1.transform.position.x)
         {
+            ThisEnemy.GetComponent<SpriteRenderer>().flipX = !ThisEnemy.GetComponent<SpriteRenderer>().flipX;
             _flipToggle = true;
         }
         else if (ThisEnemy.transform.position.x > Waypoint2.transform.position.x)
         {
+            ThisEnemy.GetComponent<SpriteRenderer>().flipX = !ThisEnemy.GetComponent<SpriteRenderer>().flipX;
             _flipToggle = false;
         }
     }
@@ -109,8 +109,8 @@ public class Enemy : MonoBehaviour
     {
         if (EnemyCollider != null)
         {
-            PlayerStateScript.Health -= HPDamage;
-            PlayerStateScript._currentFrostDamage -= FrostDamage;
+            PlayerStateScript.Health = Mathf.Clamp(PlayerStateScript.Health -= HPDamage, 0 , 100);
+            PlayerStateScript._currentFrostDamage = Mathf.Clamp(PlayerStateScript._currentFrostDamage -= FrostDamage, 0, 100);
             DamageParticles.Play();
         }
     }
@@ -123,7 +123,8 @@ public class Enemy : MonoBehaviour
 
     public void IsDoneAttacking()
     {
-        _isNotAttacking = true;
+        if (EnemyCollider == null)
+            _isNotAttacking = true;
     }
 
     public void HasTransformed()

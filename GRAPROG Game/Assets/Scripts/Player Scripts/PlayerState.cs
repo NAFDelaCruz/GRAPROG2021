@@ -25,6 +25,7 @@ public class PlayerState : MonoBehaviour
     private float _frostDamageExecuteTime = 0;
     private float _hpDepleteTime = 0;
     private float _defrostExecuteTime = 0;
+    private float _lastCurrentFrostDamage = 49;
 
     void Start()
     {
@@ -67,12 +68,17 @@ public class PlayerState : MonoBehaviour
         }
 
         //Subract Frost damage if Lantern Power is sufficient 
-        if (Health > 0 && PlayerControllerScript.LightRadius > 1.75f && (_currentFrostDamage < 100 && _currentFrostDamage >= 50) && Time.time > _defrostExecuteTime)
+        if (Health > 0 && PlayerControllerScript.LightRadius > 1.75f && (_currentFrostDamage < 100 && _currentFrostDamage > 0) && Time.time > _defrostExecuteTime)
         {
             DefrostEffecT();
             UIControllerScript._isTakingFrostDamage = false;
         }
         else if (Health > 0 && (PlayerControllerScript.LightRadius <= 1.75f && PlayerControllerScript.LightRadius > 1.25f) && (_currentFrostDamage < 75 && _currentFrostDamage >= 50) && Time.time > _defrostExecuteTime)
+        {
+            DefrostEffecT();
+            UIControllerScript._isTakingFrostDamage = false;
+        }
+        else if (Health > 0 && (PlayerControllerScript.LightRadius <= 1.75f && PlayerControllerScript.LightRadius >= 0.5f) && (_currentFrostDamage < 50 && _currentFrostDamage > 0) && Time.time > _defrostExecuteTime)
         {
             DefrostEffecT();
             UIControllerScript._isTakingFrostDamage = false;
@@ -95,14 +101,19 @@ public class PlayerState : MonoBehaviour
         //Initiate Icicle effect
         if (Health == 0 && _currentFrostDamage <= 49)
         {
-            _iceState = Mathf.Clamp(_iceState + (0.04f * Time.deltaTime), 0, 1);
+            if (_lastCurrentFrostDamage > _currentFrostDamage)
+            {
+                _lastCurrentFrostDamage = _currentFrostDamage;
+                _iceState = Mathf.Clamp(_iceState = (1 - (_currentFrostDamage / 49)), 0, 1);
+            }
+                
         }
         else if (Health > 0 && _currentFrostDamage > 0)
         {
-            _iceState = Mathf.Clamp(_iceState - (0.04f * Time.deltaTime), 0, 1);
+            _lastCurrentFrostDamage = 49;
+            _iceState = Mathf.Clamp(_iceState = (1 - (_currentFrostDamage / 49)), 0, 1);
         }
     }
-
     //Function to add frost damage overtime
     void AddFrostEffecT()
     {

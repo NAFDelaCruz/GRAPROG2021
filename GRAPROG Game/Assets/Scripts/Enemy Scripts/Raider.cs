@@ -2,32 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ocus : Enemy
+public class Raider : Enemy
 {
     private bool _playerIsTargeted = false;
-     
+
     void Update()
     {
         DistanceFromPlayer = Mathf.Abs(gameObject.transform.position.x - Player.transform.position.x);
-        EnemyAnimator.SetFloat("Distance", DistanceFromPlayer);
 
         DetectRadius = PlayerControllerScript.LightRadius + 1.5f;
-        if (!_isPlayerHiding && DistanceFromPlayer <= DetectRadius && _isNotAttacking && _hasTransformed)
+        if (!_isPlayerHiding && DistanceFromPlayer <= DetectRadius && _isNotAttacking)
         {
             ApproachPlayer();
             _playerIsTargeted = true;
         }
-        else if (_isPlayerHiding && DistanceFromPlayer <= DetectRadius && PlayerControllerScript.LightRadius != 0.5f && _isNotAttacking && _hasTransformed)
+        else if (_isPlayerHiding && DistanceFromPlayer <= DetectRadius && PlayerControllerScript.LightRadius != 0.5f && _isNotAttacking)
         {
             ApproachPlayer();
             _playerIsTargeted = true;
         }
-        else if (_isPlayerHiding && DistanceFromPlayer <= DetectRadius && PlayerControllerScript.LightRadius == 0.5f && _isNotAttacking && _hasTransformed && ThisEnemy.GetComponent<SpriteRenderer>().sortingOrder == Player.GetComponent<SpriteRenderer>().sortingOrder)
+        else if (_isPlayerHiding && DistanceFromPlayer <= DetectRadius && PlayerControllerScript.LightRadius == 0.5f && _isNotAttacking && ThisEnemy.GetComponent<SpriteRenderer>().sortingOrder == Player.GetComponent<SpriteRenderer>().sortingOrder)
         {
             ApproachPlayer();
             _playerIsTargeted = true;
         }
-        else if (_hasTransformed && _isNotAttacking)
+        else if (_isNotAttacking)
         {
             Patrol();
             _playerIsTargeted = false;
@@ -48,4 +47,4 @@ public class Ocus : Enemy
         if (collision.CompareTag("Player") && _playerIsTargeted)
             EnemyCollider = null;
     }
-}   
+}

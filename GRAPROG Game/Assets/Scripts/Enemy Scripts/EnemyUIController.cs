@@ -6,11 +6,11 @@ using TMPro;
 public class EnemyUIController : MonoBehaviour
 {
     public TextMeshProUGUI EnemyLayerGUI;
-    public Ocus OcusScript;
+    public SpriteRenderer ThisEnemyRenderer;
 
     // Update is called once per frame
     void Update()
     {
-        EnemyLayerGUI.text = OcusScript.ThisEnemy.GetComponent<SpriteRenderer>().sortingOrder.ToString();
+        EnemyLayerGUI.text = ThisEnemyRenderer.sortingOrder.ToString();
     }
 }
