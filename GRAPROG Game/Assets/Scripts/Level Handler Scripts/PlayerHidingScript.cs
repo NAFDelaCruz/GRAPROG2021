@@ -6,7 +6,6 @@ public class PlayerHidingScript : MonoBehaviour
 {
     public Ocus OcusScript;
     public Raider RaiderScript;
-    //public Bandit BanditScript;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -14,7 +13,6 @@ public class PlayerHidingScript : MonoBehaviour
         {
             OcusScript._isPlayerHiding = true;
             RaiderScript._isPlayerHiding = true;
-            Debug.Log("IsWorking");
         }
     }
 

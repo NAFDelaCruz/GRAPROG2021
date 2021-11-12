@@ -99,14 +99,4 @@ public class UIController : MonoBehaviour
             yield return 0;
         }
     }
-
-    public void RestartLevel()
-    {
-        SceneManager.LoadScene("Demo");
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
 }

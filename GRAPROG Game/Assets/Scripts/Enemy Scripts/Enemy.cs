@@ -45,13 +45,13 @@ public class Enemy : MonoBehaviour
     {
         if (ThisEnemy.transform.position.x > Player.transform.position.x)
         {
-            ThisEnemy.GetComponent<SpriteRenderer>().flipX = !ThisEnemy.GetComponent<SpriteRenderer>().flipX;
+            ThisEnemy.GetComponent<SpriteRenderer>().flipX = false;
             Direction = -1;
         }
 
         if (ThisEnemy.transform.position.x < Player.transform.position.x)
         {
-            ThisEnemy.GetComponent<SpriteRenderer>().flipX = !ThisEnemy.GetComponent<SpriteRenderer>().flipX;
+            ThisEnemy.GetComponent<SpriteRenderer>().flipX = true;
             Direction = 1;
         }
     }
@@ -85,6 +85,8 @@ public class Enemy : MonoBehaviour
         {
             StartCoroutine(Idle());
         }
+
+        ThisEnemy.GetComponent<SpriteRenderer>().flipX = _flipToggle;
     }
 
     public IEnumerator Idle()
@@ -95,12 +97,10 @@ public class Enemy : MonoBehaviour
         _isNotIdle = true;
         if (ThisEnemy.transform.position.x < Waypoint1.transform.position.x)
         {
-            ThisEnemy.GetComponent<SpriteRenderer>().flipX = !ThisEnemy.GetComponent<SpriteRenderer>().flipX;
             _flipToggle = true;
         }
         else if (ThisEnemy.transform.position.x > Waypoint2.transform.position.x)
         {
-            ThisEnemy.GetComponent<SpriteRenderer>().flipX = !ThisEnemy.GetComponent<SpriteRenderer>().flipX;
             _flipToggle = false;
         }
     }
