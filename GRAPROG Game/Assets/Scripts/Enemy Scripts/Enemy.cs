@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     public float FrostDamage;
     public float HPDamage;
     public int MaxAttacks;
+    public float AttackDistance;
     
     [HideInInspector]
     public float DistanceFromPlayer;
@@ -43,23 +44,22 @@ public class Enemy : MonoBehaviour
 
     public void GetMoveDirection()
     {
-        if (ThisEnemy.transform.position.x > Player.transform.position.x)
+        if (ThisEnemy.transform.position.x > Player.transform.position.x + AttackDistance)
         {
             ThisEnemy.GetComponent<SpriteRenderer>().flipX = false;
-            Direction = -1;
+            ThisEnemy.transform.Translate(Vector2.right * Time.deltaTime * MovementSpeed * -1);
         }
 
-        if (ThisEnemy.transform.position.x < Player.transform.position.x)
+        if (ThisEnemy.transform.position.x < Player.transform.position.x - AttackDistance)
         {
             ThisEnemy.GetComponent<SpriteRenderer>().flipX = true;
-            Direction = 1;
+            ThisEnemy.transform.Translate(Vector2.right * Time.deltaTime * MovementSpeed * 1);
         }
     }
 
     public void ApproachPlayer()
     {
         GetMoveDirection();
-        ThisEnemy.transform.Translate(Vector2.right * Time.deltaTime * MovementSpeed * Direction);
         ThisEnemy.GetComponent<SpriteRenderer>().sortingOrder = Player.GetComponent<SpriteRenderer>().sortingOrder;
         EnemyAnimator.SetInteger("State", 1);
     }

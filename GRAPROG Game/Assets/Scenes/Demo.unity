@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -158,7 +158,7 @@ PrefabInstance:
     - target: {fileID: 5669183954021086919, guid: c5f08bad46d95bd4388dddcebbaf08b8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -388.83
+      value: -388.77
       objectReference: {fileID: 0}
     - target: {fileID: 5669183954021086919, guid: c5f08bad46d95bd4388dddcebbaf08b8,
         type: 3}
@@ -2062,6 +2062,7 @@ MonoBehaviour:
   FrostDamage: 10
   HPDamage: 10
   MaxAttacks: 2
+  AttackDistance: 0.15
   DistanceFromPlayer: 0
   Direction: 0
   _isNotAttacking: 1
@@ -3351,6 +3352,7 @@ MonoBehaviour:
   FrostDamage: 0
   HPDamage: 30
   MaxAttacks: 0
+  AttackDistance: 0.5
   DistanceFromPlayer: 0
   Direction: 0
   _isNotAttacking: 1
@@ -4071,7 +4073,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &761657720
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14417,7 +14419,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1808138637
 RectTransform:
   m_ObjectHideFlags: 0

@@ -56,7 +56,7 @@ public class UIController : MonoBehaviour
 
         if (Time.time > _fadeTime && PlayerStateScript._currentFrostDamage == 0 && _deathTextTransparency < 1f)
         {
-           DeathBG.color = new Color(0, 0, 0, _deathBGTransparency = Mathf.Clamp(_deathBGTransparency += 0.01f, 0, 0.6f));
+           DeathBG.color = new Color(0, 0, 0, _deathBGTransparency = Mathf.Clamp(_deathBGTransparency += 0.01f, 0, 0.8f));
            DeathText.color = new Color(1, 1, 1, _deathTextTransparency = Mathf.Clamp(_deathTextTransparency += 0.01f, 0, 1f));
            _fadeTime = Time.time + 0.1f;
         }
