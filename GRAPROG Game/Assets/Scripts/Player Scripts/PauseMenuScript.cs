@@ -10,7 +10,6 @@ public class PauseMenuScript : MonoBehaviour
     public Image Page;
     public GameObject HelpPage;
     public GameObject PauseMenu;
-    public PlayerState PlayerStateScript;
     public PlayerController PlayerControllerScript;
 
     private int _index = 0;
@@ -26,6 +25,7 @@ public class PauseMenuScript : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Escape) && _isPaused)
         {
             Unpause();
+            CloseHelpPage();
         }
 
         for (int _textIndex = 0; _textIndex < ImageSequencesTexts.Capacity; _textIndex++)
@@ -69,17 +69,17 @@ public class PauseMenuScript : MonoBehaviour
     public void Pause()
     {
         _isPaused = true;
-        PlayerStateScript.enabled = false;
-        PlayerControllerScript.enabled = false;
+        Time.timeScale = 0;
         PauseMenu.SetActive(true);
+        PlayerControllerScript.enabled = false;
     }
 
     public void Unpause()
     {
         _isPaused = false;
-        PlayerStateScript.enabled = true;
-        PlayerControllerScript.enabled = true;
+        Time.timeScale = 1;
         PauseMenu.SetActive(false);
+        PlayerControllerScript.enabled = true;
     }
 }
 
